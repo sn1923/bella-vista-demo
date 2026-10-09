@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Bella Vista Restaurant demo website — warm hospitality, seasonal ingredients, and memorable meals.">
+<title>Bella Vista Restaurant | Demo Website</title>
+<style>
+:root{--ink:#241912;--cream:#fbf5eb;--paper:#fffaf3;--red:#a93625;--gold:#c69b5b;--muted:#74675b;--line:#e8daca;--green:#354a36}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.6}
+a{color:inherit;text-decoration:none}
+img{display:block;width:100%;object-fit:cover}
+button{font:inherit;cursor:pointer}
+.demo-bar{background:#241912;color:#fff3dc;text-align:center;padding:7px 12px;font-size:.78rem;letter-spacing:.04em}
+header{position:sticky;top:0;z-index:20;background:rgba(251,245,235,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{max-width:1160px;margin:auto;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{font-family:Georgia,serif;font-size:1.35rem;font-weight:bold;line-height:1.05;letter-spacing:-.03em}
+.brand small{display:block;font: .62rem Arial,sans-serif;letter-spacing:.25em;text-transform:uppercase;color:var(--red);margin-top:5px}
+.nav-links{display:flex;align-items:center;gap:24px;font-size:.9rem}
+.nav-links a:hover{color:var(--red)}
+.btn{display:inline-flex;justify-content:center;align-items:center;gap:8px;background:var(--red);color:white;border:1px solid var(--red);padding:12px 18px;border-radius:3px;font-weight:700;transition:.2s}
+.btn:hover{background:#812719;transform:translateY(-1px)}
+.btn-outline{background:transparent;color:var(--ink);border-color:#bca995}
+.menu-toggle{display:none;background:transparent;border:1px solid var(--line);border-radius:3px;padding:8px 11px;color:var(--ink)}
+.hero{max-width:1160px;margin:auto;padding:36px 22px 66px;display:grid;grid-template-columns: .9fr 1.1fr;gap:42px;align-items:center}
+.eyebrow{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--red);font-weight:bold}
+h1,h2,h3,p{margin-top:0}
+h1,h2,.dish h3,.quote{font-family:Georgia,'Times New Roman',serif}
+h1{font-size:clamp(2.7rem,5.5vw,5rem);line-height:1.02;letter-spacing:-.055em;margin:16px 0 22px;font-weight:500}
+h1 em{font-weight:400;color:var(--red)}
+.hero-copy>p{max-width:460px;color:var(--muted);font-size:1.05rem}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0}
+.note{font-size:.78rem;color:var(--muted)}
+.hero-photo{position:relative;min-height:470px}
+.hero-photo img{height:470px;border-radius:48% 48% 4px 4px;box-shadow:18px 18px 0 #eadbc7}
+.photo-tag{position:absolute;left:-20px;bottom:24px;background:var(--paper);padding:17px 20px;max-width:210px;box-shadow:0 8px 28px #24191220}
+.photo-tag strong{display:block;font-family:Georgia,serif;font-size:1.15rem}
+.photo-tag span{font-size:.8rem;color:var(--muted)}
+.section{padding:76px 22px}
+.section-inner{max-width:1120px;margin:auto}
+.section-heading{text-align:center;max-width:650px;margin:0 auto 38px}
+.section-heading h2{font-size:clamp(2rem,4vw,3.2rem);line-height:1.1;margin:10px 0 14px;font-weight:500}
+.section-heading p{color:var(--muted)}
+.features{background:#f1e6d6}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.feature{padding:22px;border-top:1px solid #d8c3aa}
+.feature .num{font-family:Georgia,serif;color:var(--red);font-size:1.6rem}
+.feature h3{font-family:Georgia,serif;margin:10px 0 6px;font-size:1.25rem}
+.feature p{margin:0;color:var(--muted);font-size:.92rem}
+.menu-section{background:var(--paper)}
+.menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.dish{background:#fff;border:1px solid var(--line);overflow:hidden}
+.dish img{height:205px;transition:transform .35s}
+.dish:hover img{transform:scale(1.035)}
+.dish-content{padding:18px}
+.dish-top{display:flex;justify-content:space-between;gap:12px;align-items:start}
+.dish h3{font-size:1.22rem;line-height:1.2;margin:0 0 8px}
+.price{color:var(--red);font-weight:bold;white-space:nowrap}
+.dish p{font-size:.9rem;color:var(--muted);margin:0}
+.menu-foot{text-align:center;margin-top:30px}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.about img{height:410px;border-radius:3px}
+.about h2{font-size:clamp(2rem,4vw,3.2rem);font-weight:500;line-height:1.12;margin:12px 0 18px}
+.about p{color:var(--muted)}
+.signature{font-family:Georgia,serif;font-style:italic;color:var(--red);font-size:1.3rem;margin-top:20px}
+.visit{background:var(--green);color:#fff7e9}
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px}
+.visit h2{font-size:clamp(2rem,4vw,3rem);font-weight:500;line-height:1.1}
+.visit p{color:#e3ddcf}
+.details{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:26px}
+.detail{border-top:1px solid #ffffff50;padding-top:14px}
+.detail strong{display:block;margin-bottom:5px;color:#e6c68d}
+.reservation{background:#f1e6d6;text-align:center}
+.reservation-card{max-width:760px;margin:auto;background:var(--paper);padding:clamp(25px,5vw,54px);border:1px solid var(--line)}
+.reservation h2{font-size:clamp(2rem,4vw,3.2rem);font-weight:500;margin:10px 0}
+.reservation p{color:var(--muted)}
+footer{background:#241912;color:#fff3dc;padding:30px 22px}
+.footer-inner{max-width:1120px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+footer p{margin:0;color:#d4c5b1;font-size:.82rem}
+.toast{display:none;position:fixed;left:16px;right:16px;bottom:18px;z-index:50;background:#243b2b;color:white;padding:15px 18px;border-radius:6px;box-shadow:0 8px 28px #0003}
+.toast.show{display:block}
+@media(max-width:780px){
+ .nav{padding:12px 16px}.menu-toggle{display:block}.nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--paper);padding:18px 22px 22px;border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;gap:16px}.nav-links.open{display:flex}.nav-links .btn{text-align:center}
+ .hero{grid-template-columns:1fr;padding:28px 18px 48px;gap:26px}.hero-photo{min-height:320px}.hero-photo img{height:320px}.photo-tag{left:8px;bottom:12px}
+ .section{padding:58px 18px}.feature-grid{grid-template-columns:1fr;gap:10px}.feature{padding:18px 5px}.menu-grid{grid-template-columns:1fr 1fr;gap:12px}.dish img{height:145px}.dish-content{padding:13px}.dish h3{font-size:1.05rem}.dish p{font-size:.82rem}.dish-top{display:block}.price{display:block;margin-bottom:7px}
+ .about,.visit-grid{grid-template-columns:1fr;gap:28px}.about img{height:290px}.details{gap:16px}
+}
+@media(max-width:420px){.menu-grid{grid-template-columns:1fr}.dish img{height:210px}.hero-actions .btn{width:100%}.details{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="demo-bar">PORTFOLIO DEMO · Bella Vista is a fictional restaurant concept</div>
+<header>
+  <nav class="nav" aria-label="Main navigation">
+    <a class="brand" href="#home">Bella Vista<small>Restaurant · Demo</small></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">☰ Menu</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#home">Home</a><a href="#menu">Menu</a><a href="#about">Our Story</a><a href="#visit">Visit</a>
+      <a class="btn" href="#reserve">Book a Table</a>
+    </div>
+  </nav>
+</header>
+<main>
+<section class="hero" id="home">
+  <div class="hero-copy">
+    <div class="eyebrow">Good food · Good company</div>
+    <h1>A little taste of <em>the good life.</em></h1>
+    <p>Seasonal ingredients, thoughtful cooking, and a welcoming table. Come hungry; leave a little happier.</p>
+    <div class="hero-actions"><a class="btn" href="#menu">Explore the Menu ↗</a><a class="btn btn-outline" href="#reserve">Reserve a Table</a></div>
+    <div class="note">A fictional restaurant demo created for website portfolio use.</div>
+  </div>
+  <div class="hero-photo">
+    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=85" alt="A beautifully plated restaurant meal" fetchpriority="high">
+    <div class="photo-tag"><strong>Made with care.</strong><span>Fresh flavors, warm hospitality.</span></div>
+  </div>
+</section>
+<section class="section features">
+  <div class="section-inner">
+    <div class="section-heading"><div class="eyebrow">The Bella Vista feeling</div><h2>Simple ingredients. Special moments.</h2><p>Good meals don't need to be complicated. They need care, character, and people to share them with.</p></div>
+    <div class="feature-grid">
+      <article class="feature"><div class="num">01</div><h3>Seasonal & fresh</h3><p>A sample menu inspired by market-fresh ingredients and comforting favorites.</p></article>
+      <article class="feature"><div class="num">02</div><h3>Made with heart</h3><p>Thoughtful details and friendly service, from the first hello to the last bite.</p></article>
+      <article class="feature"><div class="num">03</div><h3>Gather together</h3><p>A welcoming concept for date nights, family dinners, and everyday celebrations.</p></article>
+    </div>
+  </div>
+</section>
+<section class="section menu-section" id="menu">
+  <div class="section-inner">
+    <div class="section-heading"><div class="eyebrow">A few favorites</div><h2>From our kitchen</h2><p>Sample dishes and prices for this portfolio demo. A real restaurant would confirm its own menu.</p></div>
+    <div class="menu-grid">
+      <article class="dish"><img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=700&q=80" alt="Grilled salmon with vegetables" loading="lazy"><div class="dish-content"><div class="dish-top"><h3>Herb-Grilled Salmon</h3><span class="price">$18.99</span></div><p>Seasonal vegetables, lemon butter, fresh herbs.</p></div></article>
+      <article class="dish"><img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=700&q=80" alt="Pasta with herbs" loading="lazy"><div class="dish-content"><div class="dish-top"><h3>Garden Pesto Pasta</h3><span class="price">$15.50</span></div><p>Basil pesto, parmesan, toasted pine nuts.</p></div></article>
+      <article class="dish"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=700&q=80" alt="Steak dinner plate" loading="lazy"><div class="dish-content"><div class="dish-top"><h3>Classic Bistro Steak</h3><span class="price">$24.00</span></div><p>Seared steak, roasted potatoes, house sauce.</p></div></article>
+      <article class="dish"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=700&q=80" alt="Fresh colorful salad" loading="lazy"><div class="dish-content"><div class="dish-top"><h3>Market Garden Salad</h3><span class="price">$12.00</span></div><p>Crisp greens, seasonal produce, house vinaigrette.</p></div></article>
+      <article class="dish"><img src="https://images.unsplash.com/photo-1551024506-0cca7d6e2e1f?auto=format&fit=crop&w=700&q=80" alt="Sweet dessert" loading="lazy"><div class="dish-content"><div class="dish-top"><h3>Chef's Sweet Finish</h3><span class="price">$8.00</span></div><p>A rotating dessert to end your meal on a high note.</p></div></article>
+      <article class="dish"><img src="https://images.unsplash.com/photo-1513558161293-caad7eaa2f47?auto=format&fit=crop&w=700&q=80" alt="Refreshing drink with citrus" loading="lazy"><div class="dish-content"><div class="dish-top"><h3>Citrus Garden Cooler</h3><span class="price">$5.50</span></div><p>Bright citrus, fresh mint, and sparkling water.</p></div></article>
+    </div>
+    <div class="menu-foot"><a class="btn btn-outline" href="#reserve">Plan Your Visit</a></div>
+  </div>
+</section>
+<section class="section" id="about">
+  <div class="section-inner about">
+    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1000&q=85" alt="Warm restaurant dining room" loading="lazy">
+    <div><div class="eyebrow">Our story</div><h2>A welcoming table, any day of the week.</h2><p>Bella Vista is a fictional neighborhood restaurant concept built around a simple idea: a meal can turn an ordinary day into a memory.</p><p>From relaxed lunches to unhurried dinners, this demo shows how a restaurant can tell its story online with inviting photography, a clear menu, and easy-to-find details.</p><div class="signature">Pull up a chair.</div></div>
+  </div>
+</section>
+<section class="section visit" id="visit">
+  <div class="section-inner visit-grid">
+    <div><div class="eyebrow" style="color:#e6c68d">Come on in</div><h2>Good things happen around the table.</h2><p>The address and contact information below are fictional placeholders for this demo. Replace them with the real business details before launch.</p><a class="btn" style="background:#e6c68d;border-color:#e6c68d;color:#241912" href="#reserve">Request a Reservation</a></div>
+    <div class="details">
+      <div class="detail"><strong>Opening hours</strong><p>Mon–Thu: 11 am – 9 pm<br>Fri–Sat: 11 am – 10 pm<br>Sunday: 10 am – 8 pm</p></div>
+      <div class="detail"><strong>Find us</strong><p>123 Example Avenue<br>Sample City, NY 10001<br>United States</p></div>
+      <div class="detail"><strong>Call us</strong><p>(212) 555-0148<br>hello@example.invalid</p></div>
+      <div class="detail"><strong>Good to know</strong><p>Walk-ins welcome<br>Group visits by request</p></div>
+    </div>
+  </div>
+</section>
+<section class="section reservation" id="reserve">
+  <div class="section-inner reservation-card"><div class="eyebrow">Your table is waiting</div><h2>Make it a meal to remember.</h2><p>This button is interactive for demo purposes only. It does not submit a real booking.</p><button class="btn" id="reserveBtn" type="button">Request a Table ↗</button></div>
+</section>
+</main>
+<footer><div class="footer-inner"><a class="brand" href="#home" style="color:#fff3dc">Bella Vista<small style="color:#e6c68d">Restaurant · Demo</small></a><p>© <span id="year"></span> Bella Vista Restaurant Demo. Fictional concept for portfolio presentation.</p><a href="#home">Back to top ↑</a></div></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+const toggle=document.getElementById('menuToggle');
+const nav=document.getElementById('navLinks');
+toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));toggle.textContent=open?'✕ Close':'☰ Menu';});
+nav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.textContent='☰ Menu';}));
+const toast=document.getElementById('toast');
+document.getElementById('reserveBtn').addEventListener('click',()=>{toast.textContent='Demo only: no reservation was made. A real restaurant would connect this button to its booking system.';toast.classList.add('show');window.setTimeout(()=>toast.classList.remove('show'),5000);});
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
